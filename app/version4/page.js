@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
 
-export default function Page() {
+export default function Version4() {
   const [bgScale, setBgScale] = useState(1);
 
   const handleScroll = () => {

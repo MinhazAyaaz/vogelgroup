@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import "../styles.css";
 import ThirdSection from "./thirdSection";
 
-export default function Home() {
+export default function Version2() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bgScale, setBgScale] = useState(1);
 
