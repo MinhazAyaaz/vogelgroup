@@ -6,6 +6,7 @@ import FirstSection from "./firstSection";
 export default function Version1() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [bgScale, setBgScale] = useState(1);
+  const [divHeight, setDivHeight] = useState(920);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -17,10 +18,14 @@ export default function Version1() {
   };
 
   useEffect(() => {
+    const updateDivHeight = () => setDivHeight(window.innerHeight + 120);
+    updateDivHeight();
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", updateDivHeight);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateDivHeight);
     };
   }, []);
 
@@ -30,14 +35,11 @@ export default function Version1() {
   };
 
   const computeScale = (index) => {
-    const divHeight = window.innerHeight+120; // Assuming each div takes up the full viewport height
     const relativeScroll = scrollPosition - divHeight * index;
 
-    if (relativeScroll <= 0) return 1; // Not yet scrolled to this div
-    if (relativeScroll >= divHeight) return 0; // Fully scrolled past this div
+    if (relativeScroll <= 0) return 1;
+    if (relativeScroll >= divHeight) return 0;
 
-    // Compute scale between 1 and 0 based on how much of this div has been scrolled
-    console.log(1 - (relativeScroll / divHeight) * 2)
     return 1 - (relativeScroll / divHeight) * 2;
   };
 
